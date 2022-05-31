@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'ecran2.dart';
-import 'pages/Ecran3.dart';
+import 'pages/keyboard.dart';
+import 'pages/mouse.dart';
 
 void main() {
   runApp(const MyApp());
