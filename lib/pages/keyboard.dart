@@ -1,88 +1,119 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class KeyboardConfig extends StatefulWidget {
-  const KeyboardConfig ({Key? key}) : super (key: key);
+  const KeyboardConfig({Key? key}) : super(key: key);
+
   @override
-  State<KeyboardConfig> createState() => _KeyConfigState();
+  State<KeyboardConfig> createState() => _KeyboardConfigState();
 }
 
-class _KeyConfigState extends State<KeyboardConfig> {
+class _KeyboardConfigState extends State<KeyboardConfig> {
+  int _mouseSensitivity = 0;
+  bool _checkBoxValue = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    const title = 'Keyboard Configurator';
-
-    return MaterialApp(
-      title: title,
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          title: const Center(
-            child: SizedBox(
-              height: 100,
-              child: Text(title, style: TextStyle(
-                color: Colors.black,
-                fontSize: 50,
-              ),),
-            ),
-          )
-        ),
-        body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: const Center(
           child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.55,
-
-            child: Column(
-              children: [
-                Row(
-                  children: const [
-                    MyStatefulWidget()
-                  ],
-                )
-              ],
+            height: 50,
+            child: Text(
+              "Keyboard configurator",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 40,
+              ),
             ),
           ),
-        )
+        ),
+        toolbarHeight: 50,
+      ),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.55,
+          child: Column(
+            children: [
+              Row(
+                children: const [
+                  Text(
+                    "Mouse Sensitivity",
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: SfSlider(
+                      min: 0,
+                      max: 10,
+                      stepSize: 1,
+                      value: _mouseSensitivity,
+                      onChanged: (dynamic value) {
+                        setState(() {
+                          _mouseSensitivity = value;
+                        });
+                      },
+                    ),
+                  ),
+                  Text(
+                    _mouseSensitivity.toString(),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                      value: _checkBoxValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkBoxValue = value!;
+                        });
+                      }),
+                  const Text("Mouse Acceleration")
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: const [
+                    Text(
+                      "Multiply the cursor sensitivity relatively to the force applied to the mouse.",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Builder(builder: (context) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Confirm'),
+                    );
+                  }),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
-
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  String dropdownValue = 'AZERTY';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          dropdownValue = newValue!;
-        });
-      },
-      items: <String>['AZERTY', 'QWERTY', 'BEPO']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
-  }
-}
-
-

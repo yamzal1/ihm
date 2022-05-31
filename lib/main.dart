@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.white,
         title: const Center(
           child: SizedBox(
-            height: 100,
+            height: 50,
             child: Text(
               "Configurator",
               style: TextStyle(
@@ -56,8 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-        toolbarHeight: 100,
+        toolbarHeight: 50,
       ),
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
