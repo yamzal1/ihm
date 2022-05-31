@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import '../theme/appcolors.dart';
-
 class MouseConfig extends StatefulWidget {
   const MouseConfig({Key? key}) : super(key: key);
 
@@ -11,10 +9,8 @@ class MouseConfig extends StatefulWidget {
 }
 
 class _MouseConfigState extends State<MouseConfig> {
-  final SensiController = TextEditingController();
-
-  int _sensibiliteSouris = 0;
-  bool checkBoxValue = false;
+  int _mouseSensitivity = 0;
+  bool _checkBoxValue = false;
 
   @override
   void initState() {
@@ -24,105 +20,105 @@ class _MouseConfigState extends State<MouseConfig> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.blanc,
-        ),
-        home: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: AppColors.blanc,
-            title: Center(
-              child: SizedBox(
-                height: 100,
-                child: Text(
-                  "Mouse configurator",
-                  style: TextStyle(
-                    color: AppColors.noir,
-                    fontSize: 50,
-                  ),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: const Center(
+            child: SizedBox(
+              height: 100,
+              child: Text(
+                "Mouse configurator",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 50,
                 ),
               ),
             ),
-            toolbarHeight: 100,
           ),
-          backgroundColor: AppColors.blanc,
-          body: Center(
-            child: SizedBox(
-              width:
-                  MediaQuery.of(context).size.width * 0.55, //largeur de la row
-
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Mouse Sensivity",
-                        textAlign: TextAlign.left,
+          toolbarHeight: 100,
+        ),
+        backgroundColor: Colors.white,
+        body: Center(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.55,
+            child: Column(
+              children: [
+                Row(
+                  children: const [
+                    Text(
+                      "Mouse Sensitivity",
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: SfSlider(
+                        min: 0,
+                        max: 10,
+                        stepSize: 1,
+                        value: _mouseSensitivity,
+                        onChanged: (dynamic value) {
+                          setState(() {
+                            _mouseSensitivity = value;
+                          });
+                        },
                       ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width *
-                            0.5, //largeur du slider
-                        child: SfSlider(
-                          min: 0,
-                          max: 10,
-                          stepSize: 1,
-                          value: _sensibiliteSouris,
-                          onChanged: (dynamic value) {
-                            setState(() {
-                              _sensibiliteSouris = value;
-                            });
-                          },
+                    ),
+                    Text(
+                      _mouseSensitivity.toString(),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                        value: _checkBoxValue,
+                        onChanged: (value) {
+                          setState(() {
+                            _checkBoxValue = value!;
+                          });
+                        }),
+                    const Text("Mouse Acceleration")
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: const [
+                      Text(
+                        "Multiply the cursor sensitivity relatively to the force applied to the mouse.",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.5,
                         ),
-                      ),
-                      Text(
-                        _sensibiliteSouris.toString(),
                       )
                     ],
                   ),
-                  Row(
-                    children: [
-                      Checkbox(
-                          value: checkBoxValue,
-                          onChanged: (value) {
-                            setState(() {
-                              checkBoxValue = value!;
-                            });
-                          }),
-                      Text("Mouse Acceleration")
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Text("Multiplise the cursor sensitivity relatively to the force applied to the mouse.",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12.5,
-                          ),)
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Builder(builder: (context) {
-                        return ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Confirm'),
-                        );
-                      }),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+                Row(
+                  children: [
+                    Builder(builder: (context) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Confirm'),
+                      );
+                    }),
+                  ],
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

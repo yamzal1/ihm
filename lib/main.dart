@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'pages/keyboard.dart';
 import 'pages/mouse.dart';
 
+import '../theme/appColors.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -39,66 +41,71 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: const Center(
+          child: SizedBox(
+            height: 100,
+            child: Text(
+              "Configurator",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 40,
+              ),
+            ),
+          ),
+        ),
+        toolbarHeight: 100,
+      ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Configurator',
-              style: TextStyle(fontSize: 40.0),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 128.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+            buildRow('keyboard', 0),
+            buildRow('mouse', 1),
+            buildRow('desktop', 2),
+            SizedBox(
+              width: 400,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  buildRow('keyboard', 0),
-                  buildRow('mouse', 1),
-                  buildRow('desktop', 2),
-                  SizedBox(
-                    width: 400,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                backgroundColor: const Color(0xff009e49),
-                              ),
-                              onPressed: () => {},
-                              child: const Text(
-                                'RUN',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.green,
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                backgroundColor: const Color(0xfffff100),
-                              ),
-                              onPressed: () => {},
-                              child: const Text(
-                                'SAVE',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
+                        onPressed: () => {},
+                        child: const Text(
+                          'RUN',
+                          style: TextStyle(color: Colors.white),
                         ),
-                      ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.yellow,
+                        ),
+                        onPressed: () => {},
+                        child: const Text(
+                          'SAVE',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -116,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 : (_switchValue == 1)
                     ? _mouseSwitch
                     : _desktopSwitch,
-            activeColor: const Color(0xFF6200EE),
+            activeColor: AppColors.blue,
             onChanged: (bool value) => {
               setState(() {
                 if (_switchValue == 0) {
@@ -137,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 50,
             height: 50,
             child: Card(
-              color: const Color(0xff0018ff),
+              color: AppColors.blue,
               child: InkWell(
                 onTap: () {
                   if (_switchValue == 0) {
