@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class keyboardConfig extends StatefulWidget {
-  const keyboardConfig ({Key? key}) : super (key: key);
+class KeyboardConfig extends StatefulWidget {
+  const KeyboardConfig ({Key? key}) : super (key: key);
   @override
-  State<keyboardConfig> createState() => _keyConfigState();
+  State<KeyboardConfig> createState() => _KeyConfigState();
 }
 
-class _keyConfigState extends State<keyboardConfig> {
+class _KeyConfigState extends State<KeyboardConfig> {
   @override
   Widget build(BuildContext context) {
     const title = 'Keyboard Configurator';
@@ -18,7 +18,7 @@ class _keyConfigState extends State<keyboardConfig> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          title: Center(
+          title: const Center(
             child: SizedBox(
               height: 100,
               child: Text(title, style: TextStyle(
@@ -35,7 +35,7 @@ class _keyConfigState extends State<keyboardConfig> {
             child: Column(
               children: [
                 Row(
-                  children: [
+                  children: const [
                     MyStatefulWidget()
                   ],
                 )

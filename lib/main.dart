@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poto_rapido/pages/Ecran3.dart';
+
+import 'ecran2.dart';
+import 'pages/Ecran3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -138,7 +140,25 @@ class _MyHomePageState extends State<MyHomePage> {
               color: const Color(0xff0018ff),
               child: InkWell(
                 onTap: () {
-                  // print("tapped");
+                  if (_switchValue == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const KeyboardConfig()),
+                    );
+                  } else if (_switchValue == 1) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MouseConfig()),
+                    );
+                  } else {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const KeyboardConfig()),
+                    // );
+                  }
                 },
                 child: const Icon(
                   Icons.settings,
