@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poto_rapido/pages/desktop.dart';
 
 import 'pages/keyboard.dart';
 import 'pages/mouse.dart';
@@ -161,11 +162,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           builder: (context) => const MouseConfig()),
                     );
                   } else {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => const KeyboardConfig()),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DesktopConfig()),
+                    );
                   }
                 },
                 child: const Icon(

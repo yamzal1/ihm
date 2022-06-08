@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class KeyboardConfig extends StatefulWidget {
-  const KeyboardConfig({Key? key}) : super(key: key);
+class DesktopConfig extends StatefulWidget {
+  const DesktopConfig({Key? key}) : super(key: key);
 
   @override
-  State<KeyboardConfig> createState() => _KeyboardConfigState();
+  State<DesktopConfig> createState() => _DesktopConfigState();
 }
 
-class _KeyboardConfigState extends State<KeyboardConfig> {
-  bool _checkBoxValue = false;
+class _DesktopConfigState extends State<DesktopConfig> {
+
 
   @override
   void initState() {
@@ -17,7 +17,7 @@ class _KeyboardConfigState extends State<KeyboardConfig> {
 
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = 'AZERTY (French)';
+    String dropdownValue = '1 minutes';
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +27,7 @@ class _KeyboardConfigState extends State<KeyboardConfig> {
           child: SizedBox(
             height: 50,
             child: Text(
-              "Keyboard configurator",
+              "Desktop configurator",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 40,
@@ -45,28 +45,44 @@ class _KeyboardConfigState extends State<KeyboardConfig> {
             children: [
               Row(
                 children:  [
-                DropdownButton<String>(
-                  value: dropdownValue,
-                  icon: const Icon(Icons.arrow_downward),
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.deepPurple),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.deepPurpleAccent,
-                  ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: <String>['AZERTY (French)', 'QWERTY (US - International)', '...']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                )
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: const Icon(Icons.arrow_downward),
+                    elevation: 16,
+                    style: const TextStyle(color: Colors.deepPurple),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
+                    items: <String>[  '1 minutes',
+                                      '2 minutes',
+                                      '3 minutes',
+                                      '5 minutes',
+                                      '10 minutes',
+                                      '15 minutes',
+                                      '20 minutes',
+                                      '25 minutes',
+                                      '30 minutes',
+                                      '45 minutes',
+                                      '1 hour',
+                                      '2 hours',
+                                      '3 hours',
+                                      '4 hours',
+                                      '5 hours',
+                                      'Never',
+                    ]
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  )
                 ],
               ),
               Row(
@@ -80,18 +96,7 @@ class _KeyboardConfigState extends State<KeyboardConfig> {
 
                 ],
               ),
-              Row(
-                children: [
-                  Checkbox(
-                      value: _checkBoxValue,
-                      onChanged: (value) {
-                        setState(() {
-                          _checkBoxValue = value!;
-                        });
-                      }),
-                  const Text("Sticky Keys")
-                ],
-              ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
