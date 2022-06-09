@@ -42,6 +42,8 @@ class _MouseConfigState extends State<MouseConfig> {
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.55,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 children: const [

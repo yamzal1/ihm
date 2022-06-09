@@ -14,6 +14,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   syncfusion_flutter_sliders : ^20.1.56
+  file_picker: ^4.6.1
 
 
 dev_dependencies:
